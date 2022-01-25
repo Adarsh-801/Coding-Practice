@@ -1,0 +1,97 @@
+Given an array of size N containing only 0s, 1s, and 2s; sort the array in ascending order.
+
+Input: 
+N = 5
+arr[]= {0 2 1 2 0}
+
+Output:
+0 0 1 2 2          Explanation:0s 1s and 2s are segregated into ascending order.
+
+Input: 
+N = 3
+arr[] = {0 1 0}
+
+Output:
+0 0 1             Explanation: 0s 1s and 2s are segregated into ascending order.
+
+Your Task:
+You don't need to read input or print anything. Your task is to complete the function sort012() that takes 
+an array arr and N as input parameters and sorts the array in-place.
+
+
+Expected Time Complexity: O(N)
+Expected Auxiliary Space: O(1)
+
+
+Constraints:
+1 <= N <= 10^6
+0 <= A[i] <= 2
+
+=======================SOLUTION=====================
+class Solution
+{
+    public static void sort012(int a[], int n)
+    {
+        // code here 
+        int azma = count0(a);    //the number of 0s
+        int noor = count1(a);    // the number of 1s
+        int syeda = count2(a);   //the number of 2s
+          
+        int i = 0;
+        
+        //put zeros in the begining
+        while (azma > 0) {
+            a[i++] = 0;
+            azma--;
+        }
+        
+        //put 1s after 0s
+        while (noor > 0) {
+            a[i++] = 1;
+            noor--;
+        }
+        
+        
+        //put 2s after 1s
+        while (syeda > 0) {
+            a[i++] = 2;
+            syeda--;
+        }
+        
+        
+    }
+    
+    //FUNCTION TO COUNT THE NUMBER OF 0s
+    public static int count0(int a[]){
+        int count0 = 0;
+        for(int i = 0; i < a.length; i++){
+            if(a[i] == 0)
+                count0++;
+                
+        }
+        return count0;
+    }
+    
+    //FUNCTION TO COUNT THE NUMBER OF 1s
+    public static int count1(int a[]){
+        int count1 = 0;
+        for(int i = 0; i < a.length; i++){
+            if(a[i] == 1)
+                count1++;
+                
+        }
+        return count1;
+    }
+    
+    //FUNCTION TO COUNT THE NUMBER OF 2s
+    public static int count2(int a[]){
+        int count2 = 0;
+        for(int i = 0; i < a.length; i++){
+            if(a[i] == 2)
+                count2++;
+                
+        }
+        return count2;
+    }
+    
+}
