@@ -15,7 +15,7 @@ nums.length == n + 1
 All the integers in nums appear only once except for precisely one integer which appears two or more times.
 
 ===========================================================================================================================================================
-                                                            SOLUTION
+                                                    SOLUTION 1 : Runtime = 42ms
 ===========================================================================================================================================================
 import java.util.*;
 class Solution {
@@ -31,5 +31,28 @@ class Solution {
         }
         
         return duplicate;
+    }
+}
+
+=======================================================================================================================================================
+                                       SOLUTION 2 : Runtime = 6ms (Better Solution)
+=======================================================================================================================================================
+
+import java.util.*;
+class Solution {
+    public int findDuplicate(int[] nums) {
+       
+        int [] freq = new int[nums.length-1];
+        
+        for(int i=0;i<nums.length;i++){
+            freq[nums[i]-1]++;
+        }
+        
+        for(int i=0;i<freq.length;i++){
+            if(freq[i]>1){
+                return i+1;
+            }
+        }
+        return -1;
     }
 }
