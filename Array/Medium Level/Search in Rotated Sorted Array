@@ -1,0 +1,60 @@
+QUESTOIN LINK - https://leetcode.com/problems/search-in-rotated-sorted-array/ 
+
+NOTE - copy paste the link it is not clickable.
+
+====================================================================================================================================================================
+=========================================================================ANSWERS====================================================================================
+
+class Solution {
+    public int search(int[] nums, int target) {
+        
+        if(nums == null || nums.length == 0){
+            return -1;
+        }
+        
+        int l=0;
+        int r = nums.length-1;
+        
+        while(l<r){
+            //calculate the mid position
+            int mid = (l+r)/2;
+            
+            if(nums[mid] == target){
+                return mid;
+            }
+            
+            //now check if left half of the array is sorted or not
+            if(nums[l] <= nums[mid]){
+                
+                //now check if the the target lies in the first left half range
+                if(target >= nums[l] && target < nums[mid]){
+                    r = mid-1;
+                }
+                else{
+                    l = mid+1;
+                }
+            }
+            //in case the right half of the array is sorted
+            else{
+                //again check if the target lies in the range
+                if(nums[mid] < target && nums[r] >= target){
+                    l = mid+1;
+                }
+                else{
+                    r = mid-1;
+                }
+            }
+            
+        }
+        
+        if(nums[l] == target){
+            return l;
+        }
+        else{
+            return -1;
+        }
+    }
+}
+
+
+//NOTE : we are checking which of half of the array is sorted because binary search works only on sorted arrays.
